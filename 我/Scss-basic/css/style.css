@@ -1,0 +1,637 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: '微軟正黑體';
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container {
+  width: 75%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 20px 0 10px;
+}
+
+section {
+  margin-bottom: 2rem !important;
+}
+
+/* 多行註解(會被編譯出去) */
+/* CSS 原生變數會被編譯出去 */
+:root {
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+}
+
+/* 1. Variables(變數) ----------------------------------------------------- */
+/* 維持網站的一致性
+Scss 的變數不會被編譯出去
+變數中 - 和 _ 可以通用, 但盡量維持一致性 */
+/* 任何 CSS 規範的值都可以指定給變數 */
+h1 {
+  /* 裡面的區域變數優先度大於外面的全域變數, 所以裡面設定的會蓋掉外面的 */
+  background: -webkit-gradient(linear, left bottom, left top, from(#00004b), color-stop(55%, #000ac8), to(#0019ff));
+  background: linear-gradient(0deg, #00004b 0%, #000ac8 55%, #0019ff 100%);
+  color: yellow;
+  border: 5px solid #fff;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.5rem;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  margin-bottom: 1rem;
+}
+
+/* 2. 流程控制(Flow Control) ----------------------------------------------------- */
+/* random() 為 Sass 內建函式, 提供亂數, 它是從 1 開始 */
+.mybox {
+  width: 150px;
+  height: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: blue;
+  /* 要寫在選擇器裡面
+  使用 and 兩運算式條件都成立, 不能用 && 會報錯 */
+  color: white;
+  /* 使用 or 兩運算式其中之一成立, 不能用 || 會報錯 */
+  font-size: 30px;
+  /* 使用 not 反轉運算式, 不能用 ! 會報錯 */
+  border: 10px solid yellow;
+  /* 符合 CSS 規範的值都可以寫成判斷運算式 */
+  margin: 50px;
+  /* 內建函式, 類似三元運算子, 因為它式函式所以 if 沒有 @ */
+  outline: 10px solid purple;
+}
+
+/* @for 迴圈有兩種, through 和 to */
+/* @for ... through */
+/* i = 1 2 3, through 包含 end */
+.through-1 {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  background-color: #aaa;
+}
+
+.through-2 {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  background-color: #aaa;
+}
+
+.through-3 {
+  width: 150px;
+  height: 150px;
+  display: inline-block;
+  background-color: #aaa;
+}
+
+/* @for ... to */
+/* i = 1 2 , to 不包含 end */
+.to-1 {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  background-color: #aaa;
+}
+
+.to-2 {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  background-color: #aaa;
+}
+
+/* 3. 巢狀(nested) ----------------------------------------------------- */
+#section03 .menu {
+  margin-top: 1rem;
+  /* 去除 inline-block 的幽靈空白 */
+  font-size: 0;
+}
+
+#section03 .menu li {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  /* 去除 inline-block 的幽靈空白 */
+  font-size: 1rem;
+}
+
+#section03 .menu li a {
+  display: block;
+  background: black;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem;
+}
+
+#section03 .menu li a:hover {
+  color: yellow;
+  background: #eee;
+}
+
+#section03 .menu li + li {
+  border-left: 1px solid #fff;
+}
+
+.clearfix::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* 嵌套屬性, 把相同贅詞提出來 */
+nav {
+  font-family: '微軟正黑體';
+  font-size: 1rem;
+  font-weight: bolder;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ccc;
+}
+
+/* BEM */
+.sidebar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.sidebar__item {
+  color: red;
+  padding: 1rem;
+  border: 1px solid #333;
+  text-decoration: none;
+}
+
+.sidebar__item--active {
+  color: yellow;
+  background-color: black;
+}
+
+.sidebar__item:hover {
+  color: yellow;
+  background-color: black;
+}
+
+/* 練習: 建立三欄結構, 用巢狀 */
+#exercise .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#exercise .row .col {
+  width: 31.333%;
+  margin: 1%;
+  background: #fff;
+  border: 1px solid #eee;
+  padding: 1rem;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+#exercise .row .col:hover {
+  -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
+  margin-top: -5rem;
+}
+
+#exercise img {
+  max-width: 100%;
+}
+
+/* 4. EXtend(繼承) % ----------------------------------------------------- */
+/* 用 %extend 不會編譯出 %extend, 只會編譯出 .box1, .box2, .box3 {} 成群組 */
+.box1, .box2, .box3 {
+  width: 50px;
+  height: 50px;
+  float: left;
+}
+
+#extend {
+  overflow: auto;
+}
+
+.box1 {
+  background: red;
+}
+
+.box2 {
+  background: green;
+}
+
+.box3 {
+  background: blue;
+}
+
+/* 5. Sass 的計算 ----------------------------------------------------- */
+.box4 {
+  background: #0000;
+  /* 加法 */
+  width: 100px;
+  height: 100px;
+  /* 減法 */
+  width: 50px;
+  height: 50px;
+  /* 乘法 */
+  width: 100px;
+  height: 100px;
+  /* 除法, 遇到除法養成習慣用 () */
+  width: 50px;
+  height: 50px;
+  /* 餘數 */
+  margin-top: 20px;
+  /* calc 使用變數時, 使用插值語法 */
+  margin-bottom: calc(50px + 10px);
+}
+
+/* 6. Function(函式) ----------------------------------------------------- */
+/* Function(函式) 最後一定要 return 一個值出來(不是樣式, 是值) */
+.sideLength {
+  /* 兩種寫法都可以 */
+  width: 200px;
+  height: 400px;
+}
+
+/* 可以指定預設值 */
+.sideLength2 {
+  width: 100px;
+}
+
+.pow {
+  width: 8px;
+}
+
+/* unit() 內建函式, 判斷有無單位 */
+/* px to rem */
+.rem {
+  font-size: 1rem;
+  padding: 2rem;
+}
+
+/* 計算行高 */
+/* 計算字體大小 */
+/* 計算欄位寬度 */
+#section06 .container p {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+#section06 .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+#section06 .row .col {
+  border: 1px solid #333;
+  width: 33.33333%;
+  padding: 1%;
+  margin: 1% 0;
+  background: #999900;
+  color: #999999;
+}
+
+/* 7. Mixins(混入) ----------------------------------------------------- */
+/* mixin 與 extend 不同, mixin 不會群組但可以帶入參數, mixin 每呼叫一次就會多一個樣式 */
+.mixin1 {
+  width: 100px;
+  height: 100px;
+  background: #333;
+}
+
+.mixin2 {
+  width: 100px;
+  height: 100px;
+  background: #333;
+}
+
+/* 跟函式一樣可以設定預設值 */
+.boxflex {
+  /* 使用 @include() 呼叫時若有其中一個參數不用, 要用 null 來跳過不能直接省略, 否則會報錯, 
+  ex: 不要 border => @include(100px, 100px, #333, null)  */
+  width: 100px;
+  height: 100px;
+  background: #333;
+  border: 10px solid blue;
+  outline: 10px dashed pink;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.btn {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  line-height: 1.5;
+  padding: 0.3rem 0.75rem;
+  margin: 0 0.2rem;
+  border-radius: 0.25rem;
+}
+
+.btn-dark {
+  -webkit-box-shadow: 0 0 0.3rem 0.1rem rgba(0, 0, 0, 0.6);
+          box-shadow: 0 0 0.3rem 0.1rem rgba(0, 0, 0, 0.6);
+  background-color: #000;
+}
+
+.btn-dark:hover {
+  background-color: #1a1a1a;
+}
+
+.btn-primary {
+  -webkit-box-shadow: 0 0 0.3rem 0.1rem rgba(0, 0, 0, 0.6);
+          box-shadow: 0 0 0.3rem 0.1rem rgba(0, 0, 0, 0.6);
+  background-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0062cc;
+}
+
+.btn-success {
+  -webkit-box-shadow: 0 0 0.3rem 0.1rem rgba(0, 0, 0, 0.6);
+          box-shadow: 0 0 0.3rem 0.1rem rgba(0, 0, 0, 0.6);
+  background-color: #28a745;
+}
+
+.btn-success:hover {
+  background-color: #1e7e34;
+}
+
+.btn-danger {
+  -webkit-box-shadow: 0 0 0.3rem 0.1rem rgba(0, 0, 0, 0.6);
+          box-shadow: 0 0 0.3rem 0.1rem rgba(0, 0, 0, 0.6);
+  background-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #bd2130;
+}
+
+/* Sass 的其餘參數寫在參數後面, 用 list 表示(Sass 的陣列) */
+/* JavaScript 的其餘參數寫在參數前面, ...args, 用陣列表示 */
+/* Sass 的 list 類似於陣列的概念, 但是從 1 開始 */
+/* shadows 為 list */
+.box-shadow {
+  width: 100px;
+  height: 100px;
+  -webkit-box-shadow: 0 0 10px blue, 0 0 20px red;
+          box-shadow: 0 0 10px blue, 0 0 20px red;
+  /* nth(參數, 取第幾個(從1開始)), 內建函式, 可以取 list 或 map 第幾個 item 出來 */
+  text-shadow: 0 0 20px red;
+}
+
+/* 建立多個不同顏色的盒子 */
+.b1, .b2, .b3, .b4, .b5 {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border: 1px solid #000;
+}
+
+.b1 {
+  background: #0fc182;
+}
+
+.b2 {
+  background: #d79153;
+}
+
+.b3 {
+  background: #bb6a15;
+}
+
+.b4 {
+  background: #e2054b;
+}
+
+.b5 {
+  background: #05eda3;
+}
+
+/* 8. 使用 mixin + @content 設計 RWD ----------------------------------------------------- */
+#section08 .container {
+  width: 100%;
+}
+
+#section08 .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+#section08 .col {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #333;
+}
+
+#section08 .col + .col {
+  margin-top: 20px;
+}
+
+@media (min-width: 576px) {
+  #section08 .container {
+    width: 75%;
+  }
+  #section08 .col {
+    width: 50%;
+  }
+  #section08 .col + .col {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  #section08 .col {
+    width: 33.333333%;
+  }
+}
+
+@media (min-width: 992px) {
+  #section08 .col {
+    width: 25%;
+  }
+}
+
+@media (min-width: 1200px) {
+  #section08 .col {
+    width: 20%;
+  }
+}
+
+@media (min-width: 1400px) {
+  #section08 .col {
+    width: 10%;
+  }
+}
+
+/* 9. 資料型態 */
+/* 數字(number): 分為無單位 1, 2, 3, 有單位 10px, 2rem */
+/* 字串(string): 分為有引號字串 "asdf", 無引號字串 asdf */
+/* 顏色(color): blue, #000000, rgba(0, 0, 0, 0.5) */
+/* 布林值(boolean): true, false */
+/* 空值(null): null */
+/* 物件(map): 很像 JS 物件, 有 key / value pair 一對的特性 */
+/* 列表(list): 用空格或逗號作為分隔, 1.5rem 1rem 0 2rem 或 'Courier New', Courier, monospace */
+/* list(列表) 就像 JS 的陣列, 但索引是從 1 開始, 不是 0 */
+/* 他是一系列的項目值, 透過 空格 或 逗號 分隔, 裡面每個值都稱作 item */
+/* nth(list, index) 內建函式, 取出 list 裡面的 item 值 */
+.list {
+  width: 100px;
+  width: 200px;
+  width: 300px;
+  margin: 20px;
+  margin: 20px;
+  margin: 30px;
+  margin: 40px;
+}
+
+/* index(list, value) 內建函式, 取出索引值 */
+.index {
+  width: 1;
+  width: 2;
+  width: 3;
+  z-index: 1;
+  z-index: 2;
+  z-index: 3;
+  z-index: 4;
+}
+
+/* length($list) 內建函式, 取出 list 的長度 */
+.length {
+  z-index: 4;
+}
+
+/* 使用 @for 並從 list 取值做出 class */
+.bg-red {
+  background-color: red;
+}
+
+.bg-green {
+  background-color: green;
+}
+
+.bg-blue {
+  background-color: blue;
+}
+
+/* @each ... in 從 list 取值做 class, 也可以用在 map 物件 */
+.each-bg-value {
+  background-color: red;
+}
+
+.each-bg-value {
+  background-color: green;
+}
+
+.each-bg-value {
+  background-color: blue;
+}
+
+/* join(list1, list2) 合併 list */
+.join {
+  z-index: 1, 2, 3, 4, 5, 6;
+  z-index: 1px, 2px, 3px, 4px, 5px, 6px;
+}
+
+/* map 是 Scss 的物件, 就像 JS 物件, 有 key / value 一對(pair)的特性 */
+/* map1 */
+.bg-primary {
+  background-color: red;
+}
+
+.bg-secondary {
+  background-color: green;
+}
+
+.bg-warning {
+  background-color: blue;
+}
+
+/* map2 */
+/* map-keys($map), 只對 map 物件取出 key */
+.size1 {
+  color: red;
+}
+
+.size2 {
+  color: red;
+}
+
+.size3 {
+  color: red;
+}
+
+/* map3 */
+/* map-values($map), 取出 map 中所有的 value */
+.shadow-1 {
+  -webkit-box-shadow: 0 0 10px black;
+          box-shadow: 0 0 10px black;
+}
+
+.shadow-2 {
+  -webkit-box-shadow: 0 0 20px black;
+          box-shadow: 0 0 20px black;
+}
+
+.shadow-3 {
+  -webkit-box-shadow: 0 0 30px black;
+          box-shadow: 0 0 30px black;
+}
+
+/* map4 */
+/* map 包 map */
+/* map-get(map, value), 可以用來取值 */
+.box-default {
+  width: 100px;
+  height: 100px;
+}
+
+.box-box1 {
+  width: 200px;
+  height: 200px;
+}
+
+.box-box2 {
+  width: 300px;
+  height: 300px;
+}
